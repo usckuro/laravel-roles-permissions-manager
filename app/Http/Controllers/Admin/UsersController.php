@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
-use Spatie\Permission\Models\Role;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -19,11 +19,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-
-        $users = User::all();
+//        if (! Gate::allows('users_manage')) {
+//            return abort(401);
+//        }
+        $users = User::with('roles')->limit(10)->get();
 
         return view('admin.users.index', compact('users'));
     }
@@ -70,10 +69,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-        $roles = Role::get()->pluck('name', 'name');
+        $roles = Role::whereNull('company_id')->get()->pluck('role', 'role');
 
         $user = User::findOrFail($id);
 

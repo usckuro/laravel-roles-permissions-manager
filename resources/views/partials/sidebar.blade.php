@@ -11,8 +11,8 @@
                     <span class="title">@lang('global.app_dashboard')</span>
                 </a>
             </li>
-            
-            @can('users_manage')
+
+            @if (Auth::user())
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -49,7 +49,7 @@
                     </li>
                 </ul>
             </li>
-            @endcan
+            @endif
 
             <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
                 <a href="{{ route('auth.change_password') }}">

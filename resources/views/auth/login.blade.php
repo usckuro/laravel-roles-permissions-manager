@@ -1,11 +1,11 @@
 @extends('layouts.auth')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">{{ ucfirst(config('app.name')) }} Login</div>
-                <div class="panel-body">
+    <div class="form-group row">
+        <div class="col-md-8 offset-md-2">
+            <div class="panel ">
+                <div class="card-header">{{ ucfirst(config('app.name')) }} Login</div>
+                <div class="card-block">
                     
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -27,18 +27,18 @@
                                name="_token"
                                value="{{ csrf_token() }}">
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Email</label>
+                        <div class="form-control">
+                            <label class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input type="email"
+                                <input type="text"
                                        class="form-control"
-                                       name="email"
-                                       value="{{ old('email') }}">
+                                       name="username"
+                                       value="{{ old('username') }}">
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-control">
                             <label class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
@@ -48,15 +48,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                        <div class="form-control">
+                            <div class="col-md-6 offset-md-4">
                                 <a href="{{ route('auth.password.reset') }}">Forgot your password?</a>
                             </div>
                         </div>
 
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                        <div class="form-control">
+                            <div class="col-md-6 offset-md-4">
                                 <label>
                                     <input type="checkbox"
                                            name="remember"> Remember me
@@ -64,8 +64,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                        <div class="form-control">
+                            <div class="col-md-6 offset-md-4">
                                 <button type="submit"
                                         class="btn btn-primary"
                                         style="margin-right: 15px;">

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\Company;
+use App\Models\Module;
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -19,13 +21,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
+        $companies = Company::with('roles')->get();
 
-        $roles = Role::all();
-
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.roles.index', compact('companies'));
     }
 
     /**
@@ -68,16 +66,11 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role, Company $company)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-        $permissions = Permission::get()->pluck('name', 'name');
 
-        $role = Role::findOrFail($id);
-
-        return view('admin.roles.edit', compact('role', 'permissions'));
+        $permissions = Module::with('permissions')->get();
+        return view('admin.roles.edit', compact('role', 'permissions', 'company'));
     }
 
     /**

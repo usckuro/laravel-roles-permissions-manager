@@ -4,14 +4,14 @@
     <h3 class="page-title">@lang('global.roles.title')</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.roles.store']]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="panel ">
+        <div class="card-header">
             @lang('global.app_create')
         </div>
         
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-12 form-group">
+        <div class="card-block">
+            <div class="form-group row">
+                <div class="col-xs-12 form-control">
                     {!! Form::label('name', 'Name*', ['class' => 'control-label']) !!}
                     {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
@@ -22,8 +22,8 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
+            <div class="form-group row">
+                <div class="col-xs-12 form-control">
                     {!! Form::label('permission', 'Permissions', ['class' => 'control-label']) !!}
                     {!! Form::select('permission[]', $permissions, old('permission'), ['class' => 'form-control select2', 'multiple' => 'multiple']) !!}
                     <p class="help-block"></p>

@@ -1,9 +1,8 @@
 <?php
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 use Hash;
 
 /**
@@ -18,9 +17,8 @@ use Hash;
 class User extends Authenticatable
 {
     use Notifiable;
-    use HasRoles;
 
-    protected $fillable = ['name', 'email', 'password', 'remember_token'];
+    protected $fillable = ['username', 'email', 'password'];
     
     
     /**
@@ -34,9 +32,9 @@ class User extends Authenticatable
     }
     
     
-    public function role()
+    public function roles()
     {
-        return $this->belongsToMany(Role::class, 'role_user');
+        return $this->belongsToMany(Role::class, 'user_roles');
     }
     
     

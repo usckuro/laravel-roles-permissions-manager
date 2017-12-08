@@ -23,7 +23,7 @@
                 </h3>
             @endif
 
-            <div class="row">
+            <div class="form-group row">
                 <div class="col-md-12">
 
                     @if (Session::has('message'))

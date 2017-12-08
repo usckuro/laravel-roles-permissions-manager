@@ -20,9 +20,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::get('/home', 'HomeController@index');
     Route::resource('permissions', 'Admin\PermissionsController');
     Route::post('permissions_mass_destroy', ['uses' => 'Admin\PermissionsController@massDestroy', 'as' => 'permissions.mass_destroy']);
-    Route::resource('roles', 'Admin\RolesController');
     Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-
+    Route::get('roles', ['uses' => 'Admin\RolesController@index', 'as' => 'roles.index']);
+    Route::get('roles/company/{company}/create', ['uses' => 'Admin\RolesController@create', 'as' => 'roles.create']);
+    Route::get('roles/{role}/company/{company}', ['uses' => 'Admin\RolesController@edit', 'as' => 'roles.edit']);
 });

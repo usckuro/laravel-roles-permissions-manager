@@ -7,12 +7,12 @@
         <a href="{{ route('admin.permissions.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
     </p>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="panel ">
+        <div class="card-header">
             @lang('global.app_list')
         </div>
 
-        <div class="panel-body table-responsive">
+        <div class="card-block table-responsive">
             <table class="table table-bordered table-striped {{ count($permissions) > 0 ? 'datatable' : '' }} dt-select">
                 <thead>
                     <tr>
@@ -30,13 +30,13 @@
                                 <td></td>
                                 <td>{{ $permission->name }}</td>
                                 <td>
-                                    <a href="{{ route('admin.permissions.edit',[$permission->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    <a href="{{ route('admin.permissions.edit',[$permission->id]) }}" class="btn btn-sm btn-info">@lang('global.app_edit')</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.permissions.destroy', $permission->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-sm btn-danger')) !!}
                                     {!! Form::close() !!}
                                 </td>
 

@@ -7,18 +7,18 @@
         <a href="{{ route('admin.users.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
     </p>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="panel ">
+        <div class="card-header">
             @lang('global.app_list')
         </div>
 
-        <div class="panel-body table-responsive">
+        <div class="card-block table-responsive">
             <table class="table table-bordered table-striped {{ count($users) > 0 ? 'datatable' : '' }} dt-select">
                 <thead>
                     <tr>
                         <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
 
-                        <th>@lang('global.users.fields.name')</th>
+                        <th>@lang('global.users.fields.username')</th>
                         <th>@lang('global.users.fields.email')</th>
                         <th>@lang('global.users.fields.roles')</th>
                         <th>&nbsp;</th>
@@ -32,21 +32,21 @@
                             <tr data-entry-id="{{ $user->id }}">
                                 <td></td>
 
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    @foreach ($user->roles()->pluck('name') as $role)
+                                    @foreach ($user->roles()->pluck('role') as $role)
                                         <span class="label label-info label-many">{{ $role }}</span>
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-sm btn-info">@lang('global.app_edit')</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.users.destroy', $user->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-sm btn-danger')) !!}
                                     {!! Form::close() !!}
                                 </td>
 
